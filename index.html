@@ -14,12 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
     :root{
       --bg:#ffffff;
       --card:#ffffff;
@@ -29,9 +23,9 @@
       --uiFont: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     }
     html,body{height:100%; margin:0; background:var(--bg);}
-    #map{position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; z-index:0;}
+    #map{position:fixed; inset:0; width:100%; height:100%; z-index:0;}
 
-    .scrolly{position:relative; z-index:1; width:100%; min-height:auto; pointer-events:none;}
+    .scrolly{position:relative; z-index:1; width:100%; min-height:100vh; pointer-events:none;}
     .step{height:86vh; margin:0; padding:0; opacity:0;}
 
     .card{
