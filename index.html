@@ -466,24 +466,27 @@
     cardTitleEl.style.display = t ? "block" : "none";
   }
   function setCardParts(parts){
-    cardTextEl.innerHTML = "";
-    for (const part of (parts || [])) {
-      if (typeof part === "string") {
-        cardTextEl.appendChild(document.createTextNode(part));
-        continue;
-      }
-      if (part && typeof part === "object" && part.a && part.href) {
-        const link = document.createElement("a");
-        link.textContent = part.a;
-        link.href = part.href;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        cardTextEl.appendChild(link);
-        continue;
-      }
-      cardTextEl.appendChild(document.createTextNode(String(part)));
+  cardTextEl.innerHTML = "";
+  for (const part of (parts || [])) {
+    if (typeof part === "string") {
+      const span = document.createElement("span");
+      span.textContent = part;
+      span.innerHTML = span.innerHTML.replace(/ (в|на|с|к|у|о|об|под|над|за|перед|через|из|и|а|но|до|по|или|либо|то|как|что|от|чтобы|потому|также|так|если|когда|будто|словно|чем|пусть|хоть) /g, '\u0020$1\u00A0');
+      cardTextEl.appendChild(span);
+      continue;
     }
+    if (part && typeof part === "object" && part.a && part.href) {
+      const link = document.createElement("a");
+      link.textContent = part.a;
+      link.href = part.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      cardTextEl.appendChild(link);
+      continue;
+    }
+    cardTextEl.appendChild(document.createTextNode(String(part)));
   }
+}
 
   // ---------- ПЕРЕХВАТ ДЛЯ НЕРАЗРЫВНЫХ ПРОБЕЛОВ ----------
 (function() {
